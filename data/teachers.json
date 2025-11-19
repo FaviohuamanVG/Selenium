@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1,
+    "nombre": "María García",
+    "email": "maria.garcia@escuela.edu",
+    "especialidad": "Matemáticas",
+    "telefono": "+1-555-0101",
+    "aula": "A-101",
+    "horario": "Lunes a Viernes 8:00-14:00"
+  },
+  {
+    "id": 2,
+    "nombre": "Juan Pérez",
+    "email": "juan.perez@escuela.edu",
+    "especialidad": "Ciencias",
+    "telefono": "+1-555-0102",
+    "aula": "B-205",
+    "horario": "Lunes a Viernes 9:00-15:00"
+  },
+  {
+    "id": 3,
+    "nombre": "Ana Martínez",
+    "email": "ana.martinez@escuela.edu",
+    "especialidad": "Literatura",
+    "telefono": "+1-555-0103",
+    "aula": "C-301",
+    "horario": "Lunes a Viernes 10:00-16:00"
+  },
+  {
+    "id": 4,
+    "nombre": "Carlos López",
+    "email": "carlos.lopez@escuela.edu",
+    "especialidad": "Historia",
+    "telefono": "+1-555-0104",
+    "aula": "A-102",
+    "horario": "Lunes a Viernes 8:00-14:00"
+  },
+  {
+    "id": 5,
+    "nombre": "Laura Rodríguez",
+    "email": "laura.rodriguez@escuela.edu",
+    "especialidad": "Inglés",
+    "telefono": "+1-555-0105",
+    "aula": "B-210",
+    "horario": "Lunes a Viernes 11:00-17:00"
+  },
+  {
+    "id": 6,
+    "nombre": "Selenium Test",
+    "email": "selenium@test.com",
+    "especialidad": "Automation",
+    "telefono": "+1-555-8888",
+    "aula": "S-100",
+    "horario": "Test Schedule"
+  },
+  {
+    "id": 7,
+    "nombre": "&#x27;; DROP TABLE teachers; --",
+    "email": "test@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 8,
+    "nombre": "&lt;script&gt;alert(&quot;XSS&quot;)&lt;&#x2F;script&gt;",
+    "email": "xss@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 9,
+    "nombre": "Test User",
+    "email": "test2@example.com",
+    "especialidad": "&lt;img src=x onerror=alert(1)&gt;",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 10,
+    "nombre": "&#x27;; DROP TABLE teachers; --",
+    "email": "test@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 11,
+    "nombre": "&lt;script&gt;alert(&quot;XSS&quot;)&lt;&#x2F;script&gt;",
+    "email": "xss@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 12,
+    "nombre": "Test User",
+    "email": "test2@example.com",
+    "especialidad": "&lt;img src=x onerror=alert(1)&gt;",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 13,
+    "nombre": "&#x27;; DROP TABLE teachers; --",
+    "email": "test@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 14,
+    "nombre": "&lt;script&gt;alert(&quot;XSS&quot;)&lt;&#x2F;script&gt;",
+    "email": "xss@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 15,
+    "nombre": "Test User",
+    "email": "test2@example.com",
+    "especialidad": "&lt;img src=x onerror=alert(1)&gt;",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 16,
+    "nombre": "&#x27;; DROP TABLE teachers; --",
+    "email": "test@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 17,
+    "nombre": "&lt;script&gt;alert(&quot;XSS&quot;)&lt;&#x2F;script&gt;",
+    "email": "xss@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 18,
+    "nombre": "Test User",
+    "email": "test2@example.com",
+    "especialidad": "&lt;img src=x onerror=alert(1)&gt;",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 19,
+    "nombre": "&#x27;; DROP TABLE teachers; --",
+    "email": "test@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 20,
+    "nombre": "&lt;script&gt;alert(&quot;XSS&quot;)&lt;&#x2F;script&gt;",
+    "email": "xss@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 21,
+    "nombre": "Test User",
+    "email": "test2@example.com",
+    "especialidad": "&lt;img src=x onerror=alert(1)&gt;",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 22,
+    "nombre": "&#x27;; DROP TABLE teachers; --",
+    "email": "test@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 23,
+    "nombre": "&lt;script&gt;alert(&quot;XSS&quot;)&lt;&#x2F;script&gt;",
+    "email": "xss@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 24,
+    "nombre": "Test User",
+    "email": "test2@example.com",
+    "especialidad": "&lt;img src=x onerror=alert(1)&gt;",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  }
+]

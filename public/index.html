@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Maestros</title>
+    <meta name="description" content="Sistema moderno para gestionar información de maestros con interfaz intuitiva y segura">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo-circle">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 8C16.6863 8 14 10.6863 14 14C14 17.3137 16.6863 20 20 20C23.3137 20 26 17.3137 26 14C26 10.6863 23.3137 8 20 8Z" fill="currentColor"/>
+                        <path d="M10 32C10 26.4772 14.4772 22 20 22C25.5228 22 30 26.4772 30 32H10Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h1>Sistema de Maestros</h1>
+                <p>Inicia sesión para continuar</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                <div class="demo-credentials">
+                    <small>Demo: admin / admin123</small>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="appScreen" class="app-container" style="display: none;">
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo-circle small">
+                        <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+                            <path d="M20 8C16.6863 8 14 10.6863 14 14C14 17.3137 16.6863 20 20 20C23.3137 20 26 17.3137 26 14C26 10.6863 23.3137 8 20 8Z" fill="currentColor"/>
+                            <path d="M10 32C10 26.4772 14.4772 22 20 22C25.5228 22 30 26.4772 30 32H10Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h1>Gestión de Maestros</h1>
+                </div>
+                <div class="header-right">
+                    <span id="userDisplay" class="user-display"></span>
+                    <button id="logoutBtn" class="btn btn-secondary">Cerrar Sesión</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="actions-bar">
+                    <button id="addTeacherBtn" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Agregar Maestro
+                    </button>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Buscar maestros...">
+                    </div>
+                </div>
+
+                <div class="teachers-grid" id="teachersGrid">
+                    <!-- Teachers will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Add/Edit Teacher -->
+    <div id="teacherModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Agregar Maestro</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <form id="teacherForm">
+                <input type="hidden" id="teacherId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="teacherName">Nombre Completo *</label>
+                        <input type="text" id="teacherName" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherEmail">Email *</label>
+                        <input type="email" id="teacherEmail" name="email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="teacherSpecialty">Especialidad *</label>
+                        <input type="text" id="teacherSpecialty" name="especialidad" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherPhone">Teléfono *</label>
+                        <input type="tel" id="teacherPhone" name="telefono" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="teacherClassroom">Aula *</label>
+                        <input type="text" id="teacherClassroom" name="aula" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherSchedule">Horario *</label>
+                        <input type="text" id="teacherSchedule" name="horario" required>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
