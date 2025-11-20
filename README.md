@@ -1,4 +1,5 @@
 # 🎓 Sistema de Gestión de Maestros
+La aplicacion fue actualizada en la otra rama
 
 [![Node.js](https://img.shields.io/badge/Node.js-v24.11.1-green.svg)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Express-4.18.2-blue.svg)](https://expressjs.com/)
@@ -517,9 +518,5 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 ---
 
 <div align="center">
-
-**⭐ Si este proyecto te fue útil, considera darle una estrella ⭐**
-
-Hecho con ❤️ por Lucio
 
 </div>
