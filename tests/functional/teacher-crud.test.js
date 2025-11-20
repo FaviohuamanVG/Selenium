@@ -1,6 +1,7 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const assert = require('chai').assert;
+const chromedriver = require('chromedriver');
 
 describe('Teacher Management - Functional Tests', function () {
     let driver;
@@ -13,27 +14,34 @@ describe('Teacher Management - Functional Tests', function () {
         // Set up Chrome options for Windows compatibility
         const options = new chrome.Options();
 
-        // Add arguments for better stability on Windows
-        // options.addArguments('--headless=new'); // DISABLED: Chrome 142 headless bug on Windows
-        // options.addArguments('--disable-gpu');
+        // Simplified Chrome arguments for better compatibility
         options.addArguments('--no-sandbox');
         options.addArguments('--disable-dev-shm-usage');
         options.addArguments('--window-size=1920,1080');
         options.addArguments('--disable-blink-features=AutomationControlled');
-        // options.addArguments('--disable-extensions');
-        // options.addArguments('--disable-software-rasterizer');
+
+        // Set up ChromeDriver service with correct path
+        const service = new chrome.ServiceBuilder(chromedriver.path);
 
         console.log('🚀 Iniciando ChromeDriver en modo VISIBLE...');
+        console.log('ChromeDriver path:', chromedriver.path);
 
         try {
             driver = await new Builder()
                 .forBrowser('chrome')
                 .setChromeOptions(options)
+                .setChromeService(service)
                 .build();
 
             console.log('✓ ChromeDriver initialized successfully');
+
+            // Verify driver is working
+            await driver.getTitle();
+            console.log('✓ Driver is responsive');
         } catch (error) {
-            console.error('Error initializing ChromeDriver:', error.message);
+            console.error('❌ Error initializing ChromeDriver:');
+            console.error('Message:', error.message);
+            console.error('Stack:', error.stack);
             throw error;
         }
     });
@@ -76,6 +84,10 @@ describe('Teacher Management - Functional Tests', function () {
         it('should reject invalid credentials', async function () {
             await driver.get(baseUrl);
 
+            // Wait for login form to be ready
+            await driver.wait(until.elementLocated(By.id('loginScreen')), 5000);
+            await driver.sleep(1500);
+
             // Fill login form with invalid credentials
             await driver.findElement(By.id('username')).sendKeys('invalid');
             await driver.findElement(By.id('password')).sendKeys('wrong');
@@ -98,6 +110,11 @@ describe('Teacher Management - Functional Tests', function () {
         beforeEach(async function () {
             // Login before each test
             await driver.get(baseUrl);
+
+            // Wait for login form to be ready
+            await driver.wait(until.elementLocated(By.id('loginScreen')), 5000);
+            await driver.sleep(1500);
+
             await driver.findElement(By.id('username')).sendKeys('admin');
             await driver.findElement(By.id('password')).sendKeys('admin123');
             await driver.findElement(By.css('#loginForm button[type="submit"]')).click();
@@ -194,6 +211,11 @@ describe('Teacher Management - Functional Tests', function () {
         beforeEach(async function () {
             // Login before each test
             await driver.get(baseUrl);
+
+            // Wait for login form to be ready
+            await driver.wait(until.elementLocated(By.id('loginScreen')), 5000);
+            await driver.sleep(1500);
+
             await driver.findElement(By.id('username')).sendKeys('admin');
             await driver.findElement(By.id('password')).sendKeys('admin123');
             await driver.findElement(By.css('#loginForm button[type="submit"]')).click();

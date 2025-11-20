@@ -214,5 +214,68 @@
     "telefono": "+1-555-0000",
     "aula": "A-100",
     "horario": "Test"
+  },
+  {
+    "id": 25,
+    "nombre": "Favio",
+    "email": "huamantirado2006@gmail.com",
+    "especialidad": "Backend",
+    "telefono": "987456321",
+    "aula": "1B",
+    "horario": "Tarde"
+  },
+  {
+    "id": 26,
+    "nombre": "&#x27;; DROP TABLE teachers; --",
+    "email": "test@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 27,
+    "nombre": "&lt;script&gt;alert(&quot;XSS&quot;)&lt;&#x2F;script&gt;",
+    "email": "xss@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 28,
+    "nombre": "Test User",
+    "email": "test2@example.com",
+    "especialidad": "&lt;img src=x onerror=alert(1)&gt;",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 29,
+    "nombre": "&#x27;; DROP TABLE teachers; --",
+    "email": "test@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 30,
+    "nombre": "&lt;script&gt;alert(&quot;XSS&quot;)&lt;&#x2F;script&gt;",
+    "email": "xss@example.com",
+    "especialidad": "Test",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
+  },
+  {
+    "id": 31,
+    "nombre": "Test User",
+    "email": "test2@example.com",
+    "especialidad": "&lt;img src=x onerror=alert(1)&gt;",
+    "telefono": "+1-555-0000",
+    "aula": "A-100",
+    "horario": "Test"
   }
 ]

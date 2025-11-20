@@ -1,5 +1,4 @@
 # 🎓 Sistema de Gestión de Maestros
-#La app aplicacion fue actualizada con nueva version - selenium_v2
 
 [![Node.js](https://img.shields.io/badge/Node.js-v24.11.1-green.svg)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Express-4.18.2-blue.svg)](https://expressjs.com/)
@@ -521,6 +520,6 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 **⭐ Si este proyecto te fue útil, considera darle una estrella ⭐**
 
-Hecho con ❤️ por Lucio
+Hecho con ❤️ por Favio
 
 </div>
