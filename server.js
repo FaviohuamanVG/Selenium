@@ -19,7 +19,7 @@ app.use(helmet({
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      scriptSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://cdn.jsdelivr.net"],
       imgSrc: ["'self'", "data:", "https:"]
     }
   }
@@ -73,7 +73,7 @@ app.post('/api/login', [
   }
 
   const { username, password } = req.body;
-  
+
   // Simple demo credentials
   if (username === 'admin' && password === 'admin123') {
     const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
@@ -98,7 +98,7 @@ app.get('/api/teachers/:id', authenticateToken, async (req, res) => {
   try {
     const teachers = await readTeachers();
     const teacher = teachers.find(t => t.id === parseInt(req.params.id));
-    
+
     if (teacher) {
       res.json(teacher);
     } else {
@@ -130,7 +130,7 @@ app.post('/api/teachers', [
       id: teachers.length > 0 ? Math.max(...teachers.map(t => t.id)) + 1 : 1,
       ...req.body
     };
-    
+
     teachers.push(newTeacher);
     await writeTeachers(teachers);
     res.status(201).json(newTeacher);
@@ -157,7 +157,7 @@ app.put('/api/teachers/:id', [
   try {
     const teachers = await readTeachers();
     const index = teachers.findIndex(t => t.id === parseInt(req.params.id));
-    
+
     if (index !== -1) {
       teachers[index] = { id: parseInt(req.params.id), ...req.body };
       await writeTeachers(teachers);
@@ -175,7 +175,7 @@ app.delete('/api/teachers/:id', authenticateToken, async (req, res) => {
   try {
     const teachers = await readTeachers();
     const filteredTeachers = teachers.filter(t => t.id !== parseInt(req.params.id));
-    
+
     if (filteredTeachers.length < teachers.length) {
       await writeTeachers(filteredTeachers);
       res.json({ message: 'Maestro eliminado exitosamente' });

@@ -94,10 +94,20 @@ describe('Teacher Management - Functional Tests', function () {
             // Submit form
             await driver.findElement(By.css('#loginForm button[type="submit"]')).click();
 
-            // Wait for and handle the alert
-            await driver.wait(until.alertIsPresent(), 3000);
-            const alert = await driver.switchTo().alert();
-            await alert.accept();
+            // Wait for SweetAlert2 popup to appear
+            await driver.wait(until.elementLocated(By.css('.swal2-popup')), 3000);
+            
+            // Verify error message is displayed
+            const errorTitle = await driver.findElement(By.css('.swal2-title'));
+            const titleText = await errorTitle.getText();
+            assert.include(titleText, 'Error', 'Should show error title');
+
+            // Close the SweetAlert2 popup
+            const confirmButton = await driver.findElement(By.css('.swal2-confirm'));
+            await confirmButton.click();
+
+            // Wait for alert to close
+            await driver.sleep(500);
 
             // Check if still on login screen
             const loginScreen = await driver.findElement(By.id('loginScreen'));

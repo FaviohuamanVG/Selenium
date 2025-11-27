@@ -52,14 +52,5 @@
     "telefono": "+1-555-8888",
     "aula": "S-100",
     "horario": "Test Schedule"
-  },
-  {
-    "id": 7,
-    "nombre": "Test Teacher",
-    "email": "test@example.com",
-    "especialidad": "Testing",
-    "telefono": "+1-555-9999",
-    "aula": "T-100",
-    "horario": "Lunes a Viernes 9:00-15:00"
   }
 ]
