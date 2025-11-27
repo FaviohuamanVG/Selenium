@@ -53,9 +53,16 @@ describe('Teacher Management - Functional Tests', function () {
     });
 
     describe('Login Functionality', function () {
-        it('should display login form on page load', async function () {
+        beforeEach(async function () {
+            // Navigate to the page and clear localStorage to ensure fresh state
             await driver.get(baseUrl);
+            await driver.executeScript('localStorage.clear();');
+            await driver.navigate().refresh();
+            await driver.wait(until.elementLocated(By.id('loginScreen')), 5000);
+            await driver.sleep(500);
+        });
 
+        it('should display login form on page load', async function () {
             const loginScreen = await driver.findElement(By.id('loginScreen'));
             const isDisplayed = await loginScreen.isDisplayed();
 
@@ -63,8 +70,6 @@ describe('Teacher Management - Functional Tests', function () {
         });
 
         it('should login with valid credentials', async function () {
-            await driver.get(baseUrl);
-
             // Fill login form
             await driver.findElement(By.id('username')).sendKeys('admin');
             await driver.findElement(By.id('password')).sendKeys('admin123');
@@ -82,12 +87,6 @@ describe('Teacher Management - Functional Tests', function () {
         });
 
         it('should reject invalid credentials', async function () {
-            await driver.get(baseUrl);
-
-            // Wait for login form to be ready
-            await driver.wait(until.elementLocated(By.id('loginScreen')), 5000);
-            await driver.sleep(1500);
-
             // Fill login form with invalid credentials
             await driver.findElement(By.id('username')).sendKeys('invalid');
             await driver.findElement(By.id('password')).sendKeys('wrong');
@@ -95,8 +94,10 @@ describe('Teacher Management - Functional Tests', function () {
             // Submit form
             await driver.findElement(By.css('#loginForm button[type="submit"]')).click();
 
-            // Wait a bit for alert
-            await driver.sleep(1000);
+            // Wait for and handle the alert
+            await driver.wait(until.alertIsPresent(), 3000);
+            const alert = await driver.switchTo().alert();
+            await alert.accept();
 
             // Check if still on login screen
             const loginScreen = await driver.findElement(By.id('loginScreen'));
@@ -108,23 +109,22 @@ describe('Teacher Management - Functional Tests', function () {
 
     describe('Teacher CRUD Operations', function () {
         beforeEach(async function () {
-            // Login before each test
+            // Navigate to the page and clear localStorage
             await driver.get(baseUrl);
-
-            // Wait for login form to be ready
+            await driver.executeScript('localStorage.clear();');
+            await driver.navigate().refresh();
             await driver.wait(until.elementLocated(By.id('loginScreen')), 5000);
-            await driver.sleep(1500);
+            await driver.sleep(500);
 
+            // Login
             await driver.findElement(By.id('username')).sendKeys('admin');
             await driver.findElement(By.id('password')).sendKeys('admin123');
             await driver.findElement(By.css('#loginForm button[type="submit"]')).click();
             await driver.wait(until.elementLocated(By.id('appScreen')), 5000);
+            await driver.sleep(500);
         });
 
         it('should display list of teachers', async function () {
-            // Wait for teachers to load
-            await driver.sleep(1000);
-
             const teacherCards = await driver.findElements(By.css('.teacher-card'));
 
             assert.isAtLeast(teacherCards.length, 1, 'Should display at least one teacher');
@@ -171,7 +171,7 @@ describe('Teacher Management - Functional Tests', function () {
         });
 
         it('should search for teachers', async function () {
-            await driver.sleep(1000);
+            await driver.sleep(500);
 
             // Type in search box
             const searchInput = await driver.findElement(By.id('searchInput'));
@@ -199,27 +199,35 @@ describe('Teacher Management - Functional Tests', function () {
             // Try to submit empty form
             await driver.findElement(By.css('#teacherForm button[type="submit"]')).click();
 
+            // Wait to see the validation message
+            await driver.sleep(3000);
+
             // Check if form validation prevents submission
             const nameInput = await driver.findElement(By.id('teacherName'));
             const validationMessage = await nameInput.getAttribute('validationMessage');
 
             assert.isNotEmpty(validationMessage, 'Should show validation message for required field');
+
+            // Keep the modal open a bit longer to see the validation
+            await driver.sleep(2000);
         });
     });
 
     describe('UI Interactions', function () {
         beforeEach(async function () {
-            // Login before each test
+            // Navigate to the page and clear localStorage
             await driver.get(baseUrl);
-
-            // Wait for login form to be ready
+            await driver.executeScript('localStorage.clear();');
+            await driver.navigate().refresh();
             await driver.wait(until.elementLocated(By.id('loginScreen')), 5000);
-            await driver.sleep(1500);
+            await driver.sleep(500);
 
+            // Login
             await driver.findElement(By.id('username')).sendKeys('admin');
             await driver.findElement(By.id('password')).sendKeys('admin123');
             await driver.findElement(By.css('#loginForm button[type="submit"]')).click();
             await driver.wait(until.elementLocated(By.id('appScreen')), 5000);
+            await driver.sleep(500);
         });
 
         it('should close modal when clicking cancel', async function () {

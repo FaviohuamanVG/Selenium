@@ -96,11 +96,23 @@ async function handleLogin(e) {
             loginForm.reset();
         } else {
             const error = await response.json();
-            alert(error.error || 'Error al iniciar sesión');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.error || 'Error al iniciar sesión',
+                background: '#1a1a1a',
+                color: '#ffffff'
+            });
         }
     } catch (error) {
         console.error('Login error:', error);
-        alert('Error de conexión. Asegúrate de que el servidor esté corriendo.');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error de conexión. Asegúrate de que el servidor esté corriendo.',
+            background: '#1a1a1a',
+            color: '#ffffff'
+        });
     }
 }
 
@@ -153,12 +165,12 @@ function renderTeachers(teachersToRender) {
                     <div class="teacher-specialty">${escapeHtml(teacher.especialidad)}</div>
                 </div>
                 <div class="teacher-actions">
-                    <button class="btn-icon edit" onclick="editTeacher(${teacher.id})" title="Editar">
+                    <button class="btn-icon edit" data-action="edit" data-teacher-id="${teacher.id}" title="Editar">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M11.333 2L14 4.667L5.333 13.333H2.667V10.667L11.333 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                    <button class="btn-icon delete" onclick="deleteTeacher(${teacher.id})" title="Eliminar">
+                    <button class="btn-icon delete" data-action="delete" data-teacher-id="${teacher.id}" title="Eliminar">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M2 4H14M12.667 4V13.333C12.667 14 12 14.667 11.333 14.667H4.667C4 14.667 3.333 14 3.333 13.333V4M5.333 4V2.667C5.333 2 6 1.333 6.667 1.333H9.333C10 1.333 10.667 2 10.667 2.667V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -185,6 +197,9 @@ function renderTeachers(teachersToRender) {
             </div>
         </div>
     `).join('');
+
+    // Add event delegation for edit and delete buttons
+    setupTeacherCardListeners();
 }
 
 function handleSearch(e) {
@@ -195,6 +210,23 @@ function handleSearch(e) {
         teacher.email.toLowerCase().includes(searchTerm)
     );
     renderTeachers(filtered);
+}
+
+function setupTeacherCardListeners() {
+    // Use event delegation to handle clicks on dynamically created buttons
+    teachersGrid.addEventListener('click', (e) => {
+        const button = e.target.closest('button[data-action]');
+        if (!button) return;
+
+        const action = button.dataset.action;
+        const teacherId = parseInt(button.dataset.teacherId);
+
+        if (action === 'edit') {
+            editTeacher(teacherId);
+        } else if (action === 'delete') {
+            deleteTeacher(teacherId);
+        }
+    });
 }
 
 function openModal(teacher = null) {
@@ -256,11 +288,23 @@ async function handleTeacherSubmit(e) {
             await loadTeachers();
         } else {
             const error = await response.json();
-            alert(error.error || 'Error al guardar el maestro');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.error || 'Error al guardar el maestro',
+                background: '#1a1a1a',
+                color: '#ffffff'
+            });
         }
     } catch (error) {
         console.error('Save teacher error:', error);
-        alert('Error de conexión');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error de conexión',
+            background: '#1a1a1a',
+            color: '#ffffff'
+        });
     }
 }
 
@@ -272,7 +316,20 @@ async function editTeacher(id) {
 }
 
 async function deleteTeacher(id) {
-    if (!confirm('¿Estás seguro de que deseas eliminar este maestro?')) {
+    const result = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: "No podrás revertir esta acción",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        background: '#1a1a1a',
+        color: '#ffffff'
+    });
+
+    if (!result.isConfirmed) {
         return;
     }
 
@@ -285,14 +342,35 @@ async function deleteTeacher(id) {
         });
 
         if (response.ok) {
+            await Swal.fire({
+                title: '¡Eliminado!',
+                text: 'El maestro ha sido eliminado.',
+                icon: 'success',
+                background: '#1a1a1a',
+                color: '#ffffff',
+                timer: 1500,
+                showConfirmButton: false
+            });
             await loadTeachers();
         } else {
             const error = await response.json();
-            alert(error.error || 'Error al eliminar el maestro');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.error || 'Error al eliminar el maestro',
+                background: '#1a1a1a',
+                color: '#ffffff'
+            });
         }
     } catch (error) {
         console.error('Delete teacher error:', error);
-        alert('Error de conexión');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error de conexión',
+            background: '#1a1a1a',
+            color: '#ffffff'
+        });
     }
 }
 
